@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Visualization - GHG Dashboard{% endblock %}
+
+{% block head %}
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<h1>GHG Emissions by Country</h1>
+<p>Select countries and a year range, then click Apply. Click a bar to see that country's trend over time.</p>
+
+<div class="viz-layout">
+
+    <!-- Filter sidebar -->
+    <div class="sidebar">
+
+        <label>Year from</label>
+        <div class="year-row">
+            <select id="year-start">
+                {% for y in range(1990, 2015) %}
+                    <option value="{{ y }}" {% if y == 1990 %}selected{% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+            <span>to</span>
+            <select id="year-end">
+                {% for y in range(1990, 2015) %}
+                    <option value="{{ y }}" {% if y == 2014 %}selected{% endif %}>{{ y }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <label>Search countries</label>
+        <input type="text" id="country-search" placeholder="Type to filter...">
+
+        <label>Countries</label>
+        <div class="country-list">
+            {% for c in countries %}
+                <label>
+                    <input type="checkbox" class="country-checkbox" value="{{ c }}">
+                    {{ c }}
+                </label>
+            {% endfor %}
+        </div>
+
+        <div class="small-link-btns">
+            <button id="select-all">Select all</button>
+            <button id="select-none">Select none</button>
+        </div>
+
+        <br>
+        <button id="apply-btn" class="btn">Apply</button>
+
+    </div>
+
+    <!-- Bar chart -->
+    <div class="chart-box" id="chart-box">
+        <p id="loading">Loading data...</p>
+        <svg id="chart"></svg>
+        <div id="tooltip"></div>
+        <p class="chart-hint">Hover a bar for details &bull; Click a bar to see that country's trend over time</p>
+    </div>
+
+</div>
+
+<!-- Line chart — hidden until a bar is clicked -->
+<div id="line-section">
+    <div class="chart-box">
+        <p id="line-title"></p>
+        <svg id="line-chart"></svg>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/viz.js') }}"></script>
+
+{% endblock %}

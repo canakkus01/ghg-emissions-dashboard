@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}GHG Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+<nav>
+    <a href="/" class="logo">GHG Dashboard</a>
+    <div>
+        <a href="/">Home</a>
+        <a href="/visualization">Visualization</a>
+        <a href="/contact">Contact</a>
+    </div>
+</nav>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    Data source: UN Greenhouse Gas Inventory
+</footer>
+
+</body>
+</html>

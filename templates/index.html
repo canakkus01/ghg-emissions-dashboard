@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Home - GHG Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="hero">
+    <h1>Greenhouse Gas Emissions Explorer</h1>
+    <p>Explore 25 years of greenhouse gas data across 43 countries.</p>
+    <a href="/visualization" class="btn">Go to Visualization</a>
+</div>
+
+<div class="stats">
+    <div class="stat-box">
+        <h2>43</h2>
+        <p>Countries</p>
+    </div>
+    <div class="stat-box">
+        <h2>25</h2>
+        <p>Years (1990-2014)</p>
+    </div>
+    <div class="stat-box">
+        <h2>8406</h2>
+        <p>Data points</p>
+    </div>
+</div>
+
+<p>
+    This web app shows total greenhouse gas emissions from the United Nations dataset.
+    On the visualization page you can filter by country and year range.
+    Click a bar to see how that country's emissions changed over time.
+</p>
+
+{% endblock %}
